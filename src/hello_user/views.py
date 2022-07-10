@@ -5,5 +5,5 @@ from random import randint
 NAMES = ('Денис.', 'Денис?', 'Денис!')
 def hello_user_view(request):
     name = NAMES [randint(0,2)]
-    print(request.user)
+ #   print(request.user)
     return HttpResponse(f"<h1>Hello { name }</h1>")
