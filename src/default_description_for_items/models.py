@@ -5,6 +5,9 @@ class Genre(models.Model):
         verbose_name='Genre',
         max_length=25
     )
+    def __str__(self) -> str:
+        return self.name
+    
     description = models.TextField(
         verbose_name='Description',
         blank=True,
@@ -16,6 +19,8 @@ class Publisher(models.Model):
         verbose_name='Publisher',
         max_length=25
     )
+    def __str__(self) -> str:
+        return self.name
     description = models.TextField(
         verbose_name='Description',
         blank=True,
@@ -27,6 +32,8 @@ class Series(models.Model):
         verbose_name='Series',
         max_length=25
     )
+    def __str__(self) -> str:
+        return self.name
     description = models.TextField(
         verbose_name='Description',
         blank=True,
@@ -38,8 +45,5 @@ class Autor(models.Model):
         verbose_name='Author',
         max_length=25
     )
-    description = models.TextField(
-        verbose_name='Description',
-        blank=True,
-        null=True
-    )
+    def __str__(self) -> str:
+        return self.name
