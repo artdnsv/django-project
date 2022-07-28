@@ -2,9 +2,9 @@ from django.db import models
 
 class Genre(models.Model):
     name = models.CharField(
-        verbose_name='Genre',
-        max_length=25
-    )
+        max_length=25,
+        verbose_name= "Genre",
+        )
     def __str__(self) -> str:
         return self.name
     
@@ -16,11 +16,12 @@ class Genre(models.Model):
     
 class Publisher(models.Model):
     name = models.CharField(
-        verbose_name='Publisher',
-        max_length=25
-    )
+        verbose_name="Publisher",
+        max_length=25,
+        )
     def __str__(self) -> str:
         return self.name
+    
     description = models.TextField(
         verbose_name='Description',
         blank=True,
@@ -29,21 +30,23 @@ class Publisher(models.Model):
     
 class Series(models.Model):
     name = models.CharField(
-        verbose_name='Series',
+        verbose_name="Series",
         max_length=25
     )
     def __str__(self) -> str:
         return self.name
+    
     description = models.TextField(
         verbose_name='Description',
         blank=True,
         null=True
     )
     
-class Autor(models.Model):
+class Author(models.Model):
     name = models.CharField(
-        verbose_name='Author',
-        max_length=25
+    verbose_name= "Author",
+    max_length=25,
+
     )
     def __str__(self) -> str:
         return self.name

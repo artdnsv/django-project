@@ -11,32 +11,35 @@ class Book(models.Model):
         max_length=25
     )
     def __str__(self):
-        return 'id' + ' ' + str(self.pk) + " — " + str(self.name) + ' | ' + str(self.author)
+        return 'id' + ' ' + str(self.pk) + ' — ' + str(self.name) + ' | ' + str(self.author)
     
-    genre = models.ForeignKey(
-      Genre,
-      on_delete=models.PROTECT,
-      verbose_name= "Genre",
-      related_name="genres"  
-    )
-    author = models.ForeignKey(
-      Autor,
-      on_delete=models.PROTECT,
-      verbose_name= "Author",
-      related_name="authors"  
-    )
+    genre = models.ManyToManyField(
+        Genre,
+        verbose_name='Genres',
+        related_name='genres',
+        
+        )
+    
+    author = models.ManyToManyField(
+        Author,
+        verbose_name='Authors',
+        related_name='authors'
+        )
+    
+    
     publisher = models.ForeignKey(
-      Publisher,
-      on_delete=models.PROTECT,
-      verbose_name= "Publisher",
-      related_name="publishers"  
+        Publisher,
+        related_name='publishers',
+        on_delete=models.PROTECT
     )
+    
     series = models.ForeignKey(
-      Series,
-      on_delete=models.PROTECT,
-      verbose_name= "Series",
-      related_name="series"  
+        Series,
+        related_name='series',
+        on_delete=models.PROTECT
     )
+    
+    
     price = models.DecimalField(
         verbose_name='Price(BYN)',
         max_digits=10, 
@@ -101,3 +104,4 @@ class Book(models.Model):
         verbose_name="Changing date",
         auto_now=True
     )
+    
