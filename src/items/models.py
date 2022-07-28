@@ -11,7 +11,7 @@ class Book(models.Model):
         max_length=25
     )
     def __str__(self):
-        return 'id' + ' ' + str(self.pk) + ' — ' + str(self.name) + ' | ' + str(self.author)
+        return 'id' + ' ' + str(self.pk) + ' — ' + str(self.name) + ' | ' + str(self.genre)
     
     genre = models.ManyToManyField(
         Genre,
@@ -55,8 +55,8 @@ class Book(models.Model):
     )
     
     CHOICES = (
-        ('Hard',"Hardcover"),
-        ('Soft',"Paperback"),
+        ('Hardcover',"Hardcover"),
+        ('Paperback',"Paperback"),
     )
     cover = models.CharField(
         verbose_name="Book type",
@@ -74,8 +74,8 @@ class Book(models.Model):
     )
     
     OPTIONS = (
-        ('y',"Yes"),
-        ('n',"No")
+        ('YES',"Yes"),
+        ('NO',"No")
     )
     instock = models.CharField(
         max_length=30,
