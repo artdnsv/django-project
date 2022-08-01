@@ -13,6 +13,14 @@ class Genre(models.Model):
         blank=True,
         null=True
     )
+class Author(models.Model):
+    name = models.CharField(
+    verbose_name= "Author",
+    max_length=25,
+
+    )
+    def __str__(self) -> str:
+        return self.name
     
 class Publisher(models.Model):
     name = models.CharField(
@@ -42,11 +50,3 @@ class Series(models.Model):
         null=True
     )
     
-class Author(models.Model):
-    name = models.CharField(
-    verbose_name= "Author",
-    max_length=25,
-
-    )
-    def __str__(self) -> str:
-        return self.name

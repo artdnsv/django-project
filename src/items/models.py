@@ -64,7 +64,7 @@ class Book(models.Model):
         choices=CHOICES 
     )
     dimensions = models.CharField(
-  ç      verbose_name="Dimensions",
+        verbose_name="Dimensions",
         max_length=25
     )
     isbn = ISBNField()
