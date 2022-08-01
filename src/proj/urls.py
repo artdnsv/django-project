@@ -20,8 +20,9 @@ from items import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("item/<int:id>/", views.item_view),
-    path("item-list/", views.item_list),
-    path("item-add/", views.item_add),
-
+    path('item/<int:id>/', views.item_view),
+    path('item-list/', views.item_list),
+    path('item-add/', views.ItemAdd.as_view()),
+    
 ]
+ 

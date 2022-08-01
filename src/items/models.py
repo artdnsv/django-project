@@ -6,12 +6,14 @@ from default_description_for_items.models import *
 # Create your models here.
 
 class Book(models.Model):
+
+    def __str__(self):
+        return 'id' + ' ' + str(self.pk) + ' — ' + str(self.name) + ' | ' + str(self.genre)
+
     name = models.CharField(
         verbose_name='Name of the item',
         max_length=25
     )
-    def __str__(self):
-        return 'id' + ' ' + str(self.pk) + ' — ' + str(self.name) + ' | ' + str(self.genre)
     
     genre = models.ManyToManyField(
         Genre,
@@ -26,7 +28,6 @@ class Book(models.Model):
         related_name='authors'
         )
     
-    
     publisher = models.ForeignKey(
         Publisher,
         related_name='publishers',
@@ -36,9 +37,10 @@ class Book(models.Model):
     series = models.ForeignKey(
         Series,
         related_name='series',
-        on_delete=models.PROTECT
+        on_delete=models.PROTECT,
+        blank=True,
+        null=True
     )
-    
     
     price = models.DecimalField(
         verbose_name='Price(BYN)',
@@ -63,10 +65,12 @@ class Book(models.Model):
         max_length=30,
         choices=CHOICES 
     )
+
     dimensions = models.CharField(
         verbose_name="Dimensions",
         max_length=25
     )
+
     isbn = ISBNField()
     
     weight = models.PositiveSmallIntegerField(
@@ -77,6 +81,7 @@ class Book(models.Model):
         ('YES',"Yes"),
         ('NO',"No")
     )
+
     instock = models.CharField(
         max_length=30,
         verbose_name="In stock",
@@ -91,6 +96,7 @@ class Book(models.Model):
     availible = models.PositiveIntegerField(
         verbose_name="Books available"
     )
+
     rating = models.PositiveSmallIntegerField(
         verbose_name="Rating (0-10)",
     )
@@ -98,8 +104,8 @@ class Book(models.Model):
     cataloging_date = models.DateTimeField(
         verbose_name="Date of cataloging",
         auto_now_add=True,
-        
     )
+
     changing_date = models.DateTimeField(
         verbose_name="Changing date",
         auto_now=True

@@ -1,15 +1,16 @@
+from datetime import datetime
+from django.urls import reverse_lazy
+from django.views import generic
+from . import models, forms
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from default_description_for_items.models import Genre
-from . import models
 
 def item_list(request):
     items = models.Book.objects.all()
     return render(request, template_name="items/item_list.html", context={"items":items})
 
 def item_view(request, id):
-    print(id)
     item = models.Book.objects.get(pk=id)
     out = f'''
     ID: {item.pk} </br>
@@ -34,14 +35,11 @@ def item_view(request, id):
     '''
     return HttpResponse(out)
 
-def item_add(request):
-    out = '''
-    <form action="">
-        <label for="fname">First name:</label><br>
-        <input type="text" id="fname" name="fname" value="John"><br>
-        <label for="lname">Last name:</label><br>
-        <input type="text" id="lname" name="lname" value="Doe"><br>
-        <button type="submit">Submit</button>
-    </form>
-    '''
-    return HttpResponse(out)
+class ItemAdd(generic.CreateView):
+    template_name = "items/item_add.html"
+    model = models.Book
+    form_class = forms.AddItemForm
+
+    def get_success_url(self) -> str:
+        return reverse_lazy("items:item-view", kwargs={'id' : self.object.pk})  
+ 
