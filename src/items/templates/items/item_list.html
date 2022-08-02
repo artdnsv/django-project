@@ -9,7 +9,7 @@
 <body>
     <h1>Item list</h1>
     <ul>
-        {% for item in items %}
+        {% for item in object_list  %}
         <li> <a href="/item/{{ item.id }}/">{{ item.name }}</a></li>
         {% endfor %}
     </ul>

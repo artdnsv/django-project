@@ -17,12 +17,15 @@ from django.contrib import admin
 from django.urls import path
 
 from items import views
-
+# CREATE READ UPDATE DELETE
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('item/<int:id>/', views.item_view),
-    path('item-list/', views.item_list),
     path('item-add/', views.ItemAdd.as_view()),
+    path('item-list/', views.ItemList.as_view()),
+    path('item/<int:id>/', views.ItemView.as_view()),
+    path('item_delete /<int:id>/', views.ItemDelete.as_view()),
+
+    path('', views.HomePage.as_view()),
     
 ]
  

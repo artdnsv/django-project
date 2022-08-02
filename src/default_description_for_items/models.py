@@ -13,7 +13,7 @@ class Genre(models.Model):
     )
     def __str__(self) -> str:
         return self.name
-
+        
 class Author(models.Model):
     name = models.CharField(
     verbose_name= "Author",
