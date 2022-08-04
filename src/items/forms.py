@@ -1,7 +1,7 @@
-from django import forms
+from django.forms import ModelForm
 from items import models
 
-class AddItemForm (forms.ModelForm):
+class AddItemForm (ModelForm):
     class Meta:
         model = models.Book
         fields = "__all__"

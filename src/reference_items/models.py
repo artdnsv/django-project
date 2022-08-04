@@ -40,13 +40,14 @@ class Publisher(models.Model):
 class Series(models.Model):
     name = models.CharField(
         verbose_name="Series",
-        max_length=25
+        max_length=25,
+        unique=True
     )
     description = models.TextField(
         verbose_name='Description',
         blank=True,
-        null=True,
-        unique=True
+        null=True
+        
 
     )
     def __str__(self) -> str:

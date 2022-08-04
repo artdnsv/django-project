@@ -36,11 +36,16 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'default_description_for_items',
-    'items',
-    'isbn_field'
+    'django.contrib.staticfiles'
 ]
+
+INSTALLED_APPS += [
+    'items',
+    'isbn_field',
+    'reference_items',
+    'orders'
+]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

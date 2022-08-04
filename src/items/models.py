@@ -1,7 +1,7 @@
 from tabnanny import verbose
 from django.db import models
 from isbn_field import ISBNField
-from default_description_for_items.models import *
+from reference_items.models import *
 
 # Create your models here.
 
@@ -94,7 +94,9 @@ class Book(models.Model):
     )
 
     availible = models.PositiveIntegerField(
-        verbose_name="Books available"
+        verbose_name="Books available",
+        blank=True,
+        null=True
     )
 
     rating = models.PositiveSmallIntegerField(
