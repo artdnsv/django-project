@@ -1,12 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1> Сосиска</h1>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %} Item detail {% endblock title %}
+
+{% block header %} About book:  {% endblock header %}
+
+{% block body %}
+
+<form action="" method="get">
+{% csrf_token %}
+    <b>Name:</b> {{ object.name }}<br>
+    <b>Price(BYN):</b> {{ object.price }} BYN <br>
+    <b>Author:</b> {% for author in object.author.all %} {{ author.name }} {% endfor %} <br>
+    <b>Series:</b> {{ object.series.name }} <br>
+    <b>Genre:</b> {% for genre in object.genre.all %} {{ genre.name }} {% endfor %} <br>
+    <b>Publication year</b> {{ object.year }} <br>
+    <b>Pages:</b> {{ object.pages }} pages <br>
+    <b>Cover:</b> {{ object.cover }} <br>
+    <b>Dimensions:</b> {{ object.dimensions }} <br>
+    <b>ISBN:</b> {{ object.isbn }} <br>
+    <b>Weight(gram):</b> {{ object.weight}} gm. <br>
+    <b>Reading age:</b> {{ object.age }} <br>
+    <b>Publisher:</b> {{ object.publisher.name }} <br>
+    <b>Books availible:</b> {{ object.availible }} <br>
+    <b>Rating(1-10):</b> {{ object.rating }} <br>
+    <b>Date of cataloging:</b> {{ object.cataloging_date  }} <br>
+    <b>Date of changing:</b> {{ object.changing_date }} <br>
+</form>
+
+{% endblock body %}

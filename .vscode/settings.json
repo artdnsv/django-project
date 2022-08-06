@@ -1,0 +1,5 @@
+{
+    "terminal.integrated.commandsToSkipShell": [
+        "\"emmet.includeLanguages\": {\"django-html\": \"html\"}"
+    ]
+}
