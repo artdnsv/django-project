@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %} Genre list {% endblock title %}
+
+{% block header %}Genre list{% endblock header %}
+
+{% block body %}
+<table border="1">
+    <tr><td>name</td><td>actions</td></tr>
+    {% for row in object_list %}
+        <tr><td>{{ row.name }}</td><td><a href="{% url 'ref:genre-view' row.pk %}">view</a></td></tr>
+    {% endfor %}
+</table>
+{% endblock body %}

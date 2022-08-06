@@ -8,14 +8,12 @@ class HomePage(generic.TemplateView):
      def get_context_data(self, *args, **kwargs): 
          return super().get_context_data(**kwargs)
 
-
 class ItemAdd(generic.CreateView):
     template_name = "items/item_add.html"
     model = models.Book  
-    form_class = forms.AddItemForm
-    
-    def get_success_url(self) :
-        return f"item/<{self.object.pk}>/"
+    form_class = forms.AddItemForm   
+    def get_success_url(self):
+        return reverse_lazy("item:item-view", kwargs={'pk' : self.object.pk})
 
 class ItemList(generic.ListView):
     template_name = "items/item_list.html"
@@ -28,6 +26,9 @@ class ItemView(generic.DetailView):
 class ItemEdit(generic.UpdateView):
     template_name = "items/item_edit.html"
     model = models.Book
+
+    def get_success_url(self):
+        return reverse_lazy("item:item-view", kwargs={'pk' : self.object.pk})
 
 class ItemDelete(generic.DeleteView):
     template_name = "items/item_delete.html"
