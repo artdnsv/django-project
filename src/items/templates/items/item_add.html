@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
+
 {% block title %} Add item {% endblock title %}
 
 {% block header %} Add a book:  {% endblock header %}
@@ -6,7 +8,7 @@
 {% block body %}
 <form action="" method="post">
 {% csrf_token %}
-    {{ form.as_p }}
+    {{ form|crispy }}
     <input class="btn btn-primary" type="submit" value="Save">
 </form>
 {% endblock body %}

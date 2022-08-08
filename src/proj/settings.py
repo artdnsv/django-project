@@ -36,13 +36,16 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles'
+    'django.contrib.staticfiles',
+    'crispy_forms',
+    "crispy_bootstrap5",
+
 ]
 
 INSTALLED_APPS += [
     'items',
-    'isbn_field',
     'reference_items',
+    'pages',
     'orders'
 ]
 
@@ -131,3 +134,10 @@ MEDIA_ROOT = '/home/artdnsv/django-project/media'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATICFILES_DIRS = [
+    BASE_DIR / "static", 
+]
+CRISPY_TEMPLATE_PACK = 'crispy-bootstrap5'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"

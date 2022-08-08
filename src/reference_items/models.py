@@ -11,7 +11,7 @@ class Genre(models.Model):
         blank=True,
         null=True
     )
-    def __str__(self) -> str:
+    def __str__(self):
         return self.name
         
 class Author(models.Model):

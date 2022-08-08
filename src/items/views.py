@@ -2,12 +2,6 @@ from django.views import generic
 from django.urls import reverse_lazy
 from . import models, forms
 # CREATE READ UPDATE DELETE
-
-class HomePage(generic.TemplateView):
-     template_name = "items/home.html"
-     def get_context_data(self, *args, **kwargs): 
-         return super().get_context_data(**kwargs)
-
 class ItemAdd(generic.CreateView):
     template_name = "items/item_add.html"
     model = models.Book  

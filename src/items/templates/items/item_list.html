@@ -1,12 +1,31 @@
 {% extends "base.html" %}
+
 {% block title %} List of items {% endblock title %}
 
 {% block header %} Book list {% endblock header %}
 
 {% block body %}
-    {% for item in object_list  %}
-        <li> <a href="{% url 'book:item-view' item.pk %}"> {{ item.name }}</a></li>
-    {% endfor %}
+<a href="{% url 'book:item-add' %}">Add a new book<i class="bi bi-file-earmark-plus"></i>
+</a>
+<table class="table table-striped border-secondary">
+    <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">name</th>
+            <th scope="col">actions <a href="{% url 'book:item-add' %}"><i class="bi bi-file-earmark-plus"></i>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in object_list  %}
+        <td>{{ item.pk }}</td>
+        <td><a href="{% url 'book:item-view' item.pk %}"> {{ item.name }}</a></td>
+        <td><a href="{% url 'book:item-edit' item.pk %}"><i class="bi bi-pencil-square"></i></a> <a href="{% url 'book:item-delete' item.pk %}"><i class="bi bi-trash"></i>
+        </a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
 {% endblock body %}
         

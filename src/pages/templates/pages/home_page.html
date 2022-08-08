@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Welcome To The "Pages" Online Book Store!{% endblock title %}
+{% block header %}Home page{% endblock header %} 
+
+{% block body %}
+    {% for book in book_list%}
+    draw {{ book.name }}
+    {% endfor %}
+    
+    {% for author in author%}
+    draw {{ author.name }}
+    {% endfor %}
+
+{% endblock body %}
+

@@ -19,7 +19,7 @@ from items import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.HomePage.as_view()),
+    path('', include('pages.urls', namespace='pages')),
     path('items/', include('items.urls', namespace='book')),
     path('ref/', include('reference_items.urls', namespace='ref')),
 
