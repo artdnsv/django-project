@@ -3,13 +3,14 @@
 {% block header %}Home page{% endblock header %} 
 
 {% block body %}
-    {% for book in book_list%}
+It is {% now "jS F Y H:i" %}
+    {% comment %} {% for book in book_list%}
     draw {{ book.name }}
     {% endfor %}
     
     {% for author in author%}
     draw {{ author.name }}
-    {% endfor %}
+    {% endfor %} {% endcomment %}
 
 {% endblock body %}
 

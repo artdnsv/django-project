@@ -46,7 +46,8 @@ INSTALLED_APPS += [
     'items',
     'reference_items',
     'pages',
-    'orders'
+    'orders',
+    'user_app'
 ]
 
 
