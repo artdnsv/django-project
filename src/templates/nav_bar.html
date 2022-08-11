@@ -32,8 +32,11 @@
               </form 
               
               <div class="text-end">
-              <a href="/"> Cart </a> 
-              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Log in</button>
+                  <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                      Log in
+                  </button>
+              </div>
+                {% include 'auth_modal.html' %}
             </div>
         </div>
       </nav>

@@ -1,12 +1,16 @@
 from django.views import generic
 from django.urls import reverse_lazy
 from . import models, forms
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 # CREATE READ UPDATE DELETE
-class ItemAdd(generic.CreateView):
+class ItemAdd(LoginRequiredMixin, generic.CreateView):
     template_name = "items/item_add.html"
     model = models.Book  
     form_class = forms.AddItemForm   
-    
+    login_url = reverse_lazy("user_app:login")
+    redirect_field_name = 'next'
+
     def get_success_url(self):
         return reverse_lazy("book:item-list")
 
@@ -25,18 +29,22 @@ class ItemView(generic.DetailView):
     def get_success_url(self):
         return reverse_lazy("items:item-view", kwargs={'pk' : self.object.pk})
 
-class ItemEdit(generic.UpdateView):
+class ItemEdit(LoginRequiredMixin, generic.UpdateView):
     template_name = "items/item_edit.html"
     model = models.Book
     form_class = forms.AddItemForm
+    login_url = reverse_lazy("user_app:login")
+    redirect_field_name = 'next'
+
     def get_success_url(self):
         return reverse_lazy("book:item-list")
 
-class ItemDelete(generic.DeleteView):
+class ItemDelete(LoginRequiredMixin, generic.DeleteView):
     template_name = "items/item_delete.html"
     model = models.Book
     success_url = reverse_lazy("book:item-list")
-
+    login_url = reverse_lazy("user_app:login")
+    redirect_field_name = 'next'
 
 
 
