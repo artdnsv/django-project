@@ -26,18 +26,39 @@
               </li>
             </ul>
 
-            <form class="d-flex mx-auto" role="search">
-              <input class="form-control me-2" type="search" placeholder="Lord of the Rings" aria-label="Search">
+            <form class="d-flex mx-auto" style="width: 600px;" role="search">
+              <input class="form-control me-2" type="search" placeholder="Здесь сделай чтобы каждый раз выдавался рандомный обджект нейм книги" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
               </form 
               
-              <div class="text-end">
-                  <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                      Log in
-                  </button>
+            {% if user.is_authenticated %}
+            {% comment %} <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+              <li class="nav-item"><a class="nav-link disabled"> Hello, {{ user }}!</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'user_app:logout' %}">Sign out</a></li
+            </ul>
+           </div> {% endcomment %}
+
+           <div class="btn-group">
+            <button type="button" class="btn btn-outline-success">👤 {{ user }}</button>
+            <button type="button" class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="true" data-bs-reference="parent">
+              <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-lg-end">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'user_app:logout' %}">Log out</a></li>
+            </ul>
+          </div>
+
+            {% else %}
+              <div class="text-end">          
+              {% include 'auth_button.html' %}
               </div>
-                {% include 'auth_modal.html' %}
-            </div>
+              {% include 'user_app/auth_modal.html' %}
+            {% endif %}
         </div>
       </nav>
 </header>

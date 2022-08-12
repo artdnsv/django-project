@@ -3,7 +3,8 @@
 {% block header %}Home page{% endblock header %} 
 
 {% block body %}
-It is {% now "jS F Y H:i" %}
+{% comment %} It is {% now "jS F Y H:i" %} {% endcomment %}
+
     {% comment %} {% for book in book_list%}
     draw {{ book.name }}
     {% endfor %}

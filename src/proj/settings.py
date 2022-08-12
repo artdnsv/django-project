@@ -38,8 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
-    "crispy_bootstrap5",
-
+    'crispy_bootstrap5',
+    'phonenumber_field',
+    'django_countries',
 ]
 
 INSTALLED_APPS += [
@@ -47,7 +48,7 @@ INSTALLED_APPS += [
     'reference_items',
     'pages',
     'orders',
-    'user_app'
+    'user_app',
 ]
 
 
@@ -78,6 +79,14 @@ TEMPLATES = [
         },
     },
 ]
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.core.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.request",
+)
 
 WSGI_APPLICATION = 'proj.wsgi.application'
 
@@ -121,7 +130,7 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_TZ = False
+USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
@@ -139,6 +148,26 @@ STATICFILES_DIRS = [
     BASE_DIR / "static", 
 ]
 CRISPY_TEMPLATE_PACK = 'crispy-bootstrap5'
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
-CRISPY_TEMPLATE_PACK = "bootstrap5"
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
+LOGIN_REDIRECT_URL = '/'

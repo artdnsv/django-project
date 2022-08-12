@@ -9,4 +9,5 @@ urlpatterns = [
     path('item/<int:pk>/', views.ItemView.as_view(),name="item-view"),
     path('item_edit/<int:pk>/', views.ItemEdit.as_view(),name="item-edit"),
     path('item_delete/<int:pk>/', views.ItemDelete.as_view(),name="item-delete"),
+    path('rand', views.RandomBook,name="rand"),
 ] 
