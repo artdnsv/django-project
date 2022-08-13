@@ -6,8 +6,9 @@ from phonenumber_field.modelfields import PhoneNumberField
 from django_countries.fields import CountryField
 
 class Account(models.Model):
-    user = models.OneToOneField(
+    username = models.OneToOneField(
         User,
+        verbose_name="Username",
         on_delete=models.CASCADE
     )
     phone_number = PhoneNumberField(
@@ -55,6 +56,4 @@ class Account(models.Model):
         blank=True,
         null=True      
     )
-    
-    def __str__(self):
-        return self.user.username
+    USERNAME_FIELD = 'username'
