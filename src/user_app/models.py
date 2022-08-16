@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 from django_countries.fields import CountryField
 
+
 class Account(models.Model):
     username = models.OneToOneField(
         User,

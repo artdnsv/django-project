@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
+{% load nav_bar_tags %}
 {% block title %}Welcome To The "Pages" Online Book Store!{% endblock title %}
 {% block header %}Home page{% endblock header %} 
 
 {% block body %}
+<h1>  {% view_rates %} </h1>
+{% endblock body %}
+
 {% comment %} It is {% now "jS F Y H:i" %} {% endcomment %}
 
     {% comment %} {% for book in book_list%}
@@ -12,6 +16,3 @@
     {% for author in author%}
     draw {{ author.name }}
     {% endfor %} {% endcomment %}
-
-{% endblock body %}
-
