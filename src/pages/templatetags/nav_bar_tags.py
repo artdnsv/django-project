@@ -18,9 +18,9 @@ def view_rates():
 
 @register.simple_tag
 def get_random_book():
-    max_id = Book.objects.name(max_id=Max("id"))['max_id']
+    max_id = Book.objects.all().aggregate(max_id=Max("id"))['max_id']
     while True:
         pk = random.randint(1, max_id)
         book = Book.objects.filter(pk=pk).first()
         if book:
-            return {'book': book}
+            return book.name
