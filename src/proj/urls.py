@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from items import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,6 +25,10 @@ urlpatterns = [
     path('items/', include('items.urls', namespace='book')),
     path('ref/', include('reference_items.urls', namespace='ref')),
     path('auth/', include('user_app.urls', namespace='user_app')),
+    path('orders/', include('orders.urls', namespace='orders')),
 
 ]
+
+if settings.DEBUG:
+    urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
  

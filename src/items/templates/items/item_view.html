@@ -1,29 +1,48 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %} Item detail {% endblock title %}
 
 {% block header %} About book:  {% endblock header %}
 
 {% block body %}
-
-<form action="" method="get">
 {% csrf_token %}
-    <b>Name:</b> {{ object.name }}<br>
-    <b>Price(BYN):</b> {{ object.price }} BYN <br>
-    <b>Author:</b> {% for author in object.author.all %} {{ author.name }} {% endfor %} <br>
-    <b>Series:</b> {{ object.series.name }} <br>
-    <b>Genre:</b> {% for genre in object.genre.all %} {{ genre.name }} {% endfor %} <br>
-    <b>Publication year</b> {{ object.year }} <br>
-    <b>Pages:</b> {{ object.pages }} pages <br>
-    <b>Cover:</b> {{ object.cover }} <br>
-    <b>Dimensions:</b> {{ object.dimensions }} <br>
-    <b>ISBN:</b> {{ object.isbn }} <br>
-    <b>Weight(gram):</b> {{ object.weight}} gm. <br>
-    <b>Reading age:</b> {{ object.age }} <br>
-    <b>Publisher:</b> {{ object.publisher.name }} <br>
-    <b>Books availible:</b> {{ object.availible }} <br>
-    <b>Rating(1-10):</b> {{ object.rating }} <br>
-    <b>Date of cataloging:</b> {{ object.cataloging_date  }} <br>
-    <b>Date of changing:</b> {{ object.changing_date }} <br>
-</form>
+<div class="card mb-3 mx-auto" style="max-width: 540px;">
+    {% if obj.pic %}
+    <img src="{{ obj.pic.url }}" class="img-fluid rounded-start" alt="...">
+    {% else %}
+    <img src="logo.png" class="img-fluid rounded-start" alt="...">
+    {% endif %}
+    <div class="card-body">
+      <h5 class="card-title">Name:</b> {{ object.name }} </h5>
+      <form action="" method="get">
+          <b>Price(BYN):</b> {{ object.price }} BYN <br>
+          <b>Author:</b> {% for author in object.author.all %} {{ author.name }} {% endfor %} <br>
+          <b>Series:</b> {{ object.series.name }} <br>
+          <b>Genre:</b> {% for genre in object.genre.all %} {{ genre.name }} {% endfor %} <br>
+          <b>Publication year</b> {{ object.year }} <br>
+          <b>Pages:</b> {{ object.pages }} pages <br>
+          <b>Cover:</b> {{ object.cover }} <br>
+          <b>Dimensions:</b> {{ object.dimensions }} <br>
+          <b>ISBN:</b> {{ object.isbn }} <br>
+          <b>Weight(gram):</b> {{ object.weight}} gm. <br>
+          <b>Reading age:</b> {{ object.age }} <br>
+          <b>Publisher:</b> {{ object.publisher.name }} <br>
+          <b>Books availible:</b> {{ object.availible }} <br>
+          <b>Rating(1-10):</b> {{ object.rating }} <br>
+          <b>Date of cataloging:</b> {{ object.cataloging_date  }} <br>
+          <b>Date of changing:</b> {{ object.changing_date }} <br>
+      </form>
+      <form action="{% url 'orders:add-to-cart'%}" method="get">
+        <input type="hidden" name="item_id" value="{{ object.pk }}">
+        <div class="form-group row">
+          <div class="col-md-8">
+            <input type="submit" class="btn btn-primary" value="Add to Cart">
+          </div>
+          <div class="col-md-4">
+            <input type="number" class="form-control" name="quantity" value="1" min="1" max="1000" step="1">
+          </div>
+      </form>
+        </div>
+  </div>
 
 {% endblock body %}

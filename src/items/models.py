@@ -1,16 +1,23 @@
+from distutils.command.upload import upload
 from tabnanny import verbose
 from django.db import models
 from isbn_field import ISBNField
 from reference_items.models import *
-
+from datetime import datetime
 # Create your models here.
 
 class Book(models.Model):
     def __str__(self):
-        return 'id' + ' ' + str(self.pk) + ' — ' + str(self.name) + ' | ' + str(self.genre)
+        return 'id' + ' ' + str(self.pk) + ' — ' + str(self.name)  
     name = models.CharField(
         verbose_name='Name of the item',
         max_length=100
+    )
+    pic = models.ImageField(
+        verbose_name='Picture',
+        upload_to='uploads/%Y/%m/%d/',
+        blank = True,
+        null = True,
     )
     genre = models.ManyToManyField(
         Genre,
@@ -36,7 +43,7 @@ class Book(models.Model):
     )
     price = models.DecimalField(
         verbose_name='Price(BYN)',
-        max_digits=10, 
+        max_digits=100, 
         decimal_places=2
         )
     year = models.PositiveSmallIntegerField(
