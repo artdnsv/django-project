@@ -7,9 +7,8 @@ class AddToCart(TemplateView):
     def get_context_data(self, **kwargs):
         cart_id = self.request.session.get('cart')
         item_id = self.request.GET.get('item_id')
-        quantity = self.request.GET.get('quantity')
-
-        print(self.request.session.items())
+        quantity = int( self.request.GET.get('quantity')
+)
         # 1. get a cart
         if not cart_id:
             if self.request.user.is_anonymous:
@@ -35,7 +34,7 @@ class AddToCart(TemplateView):
             )
             if not created:
                 item_in_cart.quantity = item_in_cart.quantity + quantity
-                item_in_cart.price = item_in_cart.quantity * Book.price
+                item_in_cart.price = item_in_cart.quantity * item.price
                 item_in_cart.save()
 
         context = super().get_context_data(**kwargs)
